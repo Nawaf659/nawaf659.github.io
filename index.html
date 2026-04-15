@@ -25,13 +25,13 @@ html[dir="rtl"] body{font-family:'IBM Plex Sans Arabic','DM Sans',sans-serif}
 html[dir="rtl"] *{letter-spacing:0 !important}
 h1,h2,h3{font-family:'Playfair Display',Georgia,serif}
 html[dir="rtl"] h1,html[dir="rtl"] h2,html[dir="rtl"] h3{font-family:'IBM Plex Sans Arabic',serif}
-.page{max-width:1200px;margin:0 auto}
-.content{max-width:960px;margin:0 auto;padding:0 40px}
+.page{max-width:100%;margin:0 auto}
+.content{max-width:100%;margin:0 auto;padding:0 8vw}
 
 /* Topbar */
 .topbar{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(248,245,240,0.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);transition:background 0.4s}
 html.dark .topbar{background:rgba(17,19,24,0.9)}
-.topbar-inner{max-width:1100px;margin:0 auto;padding:14px 32px;display:flex;justify-content:space-between;align-items:center}
+.topbar-inner{max-width:100%;margin:0 auto;padding:14px 8vw;display:flex;justify-content:space-between;align-items:center}
 .logo{font-family:'Playfair Display',serif;font-weight:800;font-size:22px;color:var(--ink);letter-spacing:-1px}
 .logo em{font-style:italic;color:var(--accent);font-weight:500}
 .topbar-right{display:flex;align-items:center;gap:16px}
@@ -203,9 +203,12 @@ footer{padding:48px 32px;text-align:center;font-size:12px;color:var(--muted);fon
   .contact-row{grid-template-columns:repeat(2,1fr)}
 }
 @media(min-width:1400px){
-  .content{max-width:1000px}
-  .hero-grid{grid-template-columns:200px 1fr;gap:56px}
-  .proj-grid{gap:20px}
+  .hero-grid{grid-template-columns:220px 1fr;gap:64px}
+  .hero-photo{width:220px;height:280px}
+  .proj-grid{grid-template-columns:repeat(4,1fr);gap:20px}
+}
+@media(min-width:1800px){
+  .content{padding:0 12vw}
 }
 </style>
 </head>
