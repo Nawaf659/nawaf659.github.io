@@ -4,296 +4,429 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nawaf AlHarbi — Web Developer & IT Specialist</title>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=DM+Sans:wght@300;400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg:#0b0f14;--card:#121820;--border:rgba(255,255,255,0.06);
-  --text:#f0f2f5;--text-dim:#7a8599;--accent:#3b82f6;
-  --accent-glow:rgba(59,130,246,0.15);--accent2:#06b6d4;--accent3:#8b5cf6;
-  --gradient:linear-gradient(135deg,#3b82f6,#06b6d4);
-  --gradient2:linear-gradient(135deg,#8b5cf6,#3b82f6);
+  --cream:#f8f5f0;--white:#fff;--ink:#1a1815;--ink-light:#3d3a35;
+  --muted:#8a857d;--warm:#c8a882;--warm-dark:#b08d68;
+  --warm-glow:rgba(200,168,130,0.1);--border:#e5e0d8;--border-light:#eeebe6;
+  --accent:#d4654a;--accent-glow:rgba(212,101,74,0.08);
+}
+html.dark{
+  --cream:#111318;--white:#1a1d24;--ink:#e8e6e3;--ink-light:#b8b4ae;
+  --muted:#7a7670;--warm:#c8a882;--warm-dark:#d4b48c;
+  --warm-glow:rgba(200,168,130,0.06);--border:#2a2d34;--border-light:#22252c;
+  --accent:#e07a60;--accent-glow:rgba(224,122,96,0.1);
 }
 html{scroll-behavior:smooth}
-body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-html[dir="rtl"] body{font-family:'IBM Plex Sans Arabic','Sora',sans-serif}
-body::before{content:'';position:fixed;top:0;left:0;width:100%;height:100%;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999}
-.glow-orb{position:fixed;width:600px;height:600px;border-radius:50%;filter:blur(120px);opacity:0.07;pointer-events:none;z-index:0}
-.glow-1{background:var(--accent);top:-200px;right:-200px}
-.glow-2{background:var(--accent3);bottom:-200px;left:-200px}
-.container{max-width:800px;margin:0 auto;padding:0 28px;position:relative;z-index:1}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden;transition:background 0.4s,color 0.4s}
+html[dir="rtl"] body{font-family:'IBM Plex Sans Arabic','DM Sans',sans-serif}
+html[dir="rtl"] *{letter-spacing:0 !important}
+h1,h2,h3{font-family:'Playfair Display',Georgia,serif}
+html[dir="rtl"] h1,html[dir="rtl"] h2,html[dir="rtl"] h3{font-family:'IBM Plex Sans Arabic',serif}
+.page{max-width:1100px;margin:0 auto}
+.content{max-width:740px;margin:0 auto;padding:0 32px}
 
-/* Nav */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(20px);background:rgba(11,15,20,0.8);border-bottom:1px solid var(--border)}
-.nav-inner{max-width:800px;margin:0 auto;padding:14px 28px;display:flex;justify-content:space-between;align-items:center}
-.nav-logo{font-weight:700;font-size:18px;letter-spacing:-0.5px}
-.nav-logo span{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.nav-right{display:flex;align-items:center;gap:20px}
-.nav-links{display:flex;gap:24px}
-.nav-links a{color:var(--text-dim);text-decoration:none;font-size:13px;font-weight:500;transition:color 0.3s}
-.nav-links a:hover{color:var(--text)}
-.lang-toggle{padding:5px 14px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;border:1px solid rgba(255,255,255,0.12);background:transparent;color:var(--text);transition:all 0.3s;font-family:'IBM Plex Sans Arabic','Sora',sans-serif}
-.lang-toggle:hover{border-color:var(--accent);background:var(--accent-glow)}
-
-/* Hero */
-.hero{min-height:100vh;display:flex;align-items:center;padding-top:80px;padding-bottom:40px}
-.hero-content{width:100%}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:100px;font-size:12px;font-weight:500;color:var(--accent);background:var(--accent-glow);border:1px solid rgba(59,130,246,0.2);margin-bottom:24px;letter-spacing:0.5px;font-family:'JetBrains Mono',monospace;animation:fadeInUp 0.8s ease both}
-.hero-badge .dot{width:6px;height:6px;border-radius:50%;background:#22c55e;animation:pulse 2s ease infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
-.hero h1{font-size:clamp(36px,6vw,56px);font-weight:800;letter-spacing:-2px;line-height:1.1;margin-bottom:8px;animation:fadeInUp 0.8s ease 0.1s both}
-html[dir="rtl"] .hero h1{letter-spacing:0}
-.hero h1 .gradient-text{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero .subtitle{font-size:20px;color:var(--text-dim);font-weight:400;margin-bottom:28px;animation:fadeInUp 0.8s ease 0.2s both}
-.hero .bio{font-size:16px;color:var(--text-dim);line-height:1.8;max-width:580px;margin-bottom:36px;animation:fadeInUp 0.8s ease 0.3s both}
-.hero-actions{display:flex;gap:12px;flex-wrap:wrap;animation:fadeInUp 0.8s ease 0.4s both}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border-radius:10px;font-size:14px;font-weight:600;text-decoration:none;transition:all 0.3s;cursor:pointer;border:none;font-family:inherit}
-.btn-primary{background:var(--gradient);color:#fff;box-shadow:0 4px 24px rgba(59,130,246,0.25)}
-.btn-primary:hover{box-shadow:0 8px 32px rgba(59,130,246,0.35);transform:translateY(-2px)}
-.btn-outline{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,0.12)}
-.btn-outline:hover{border-color:rgba(255,255,255,0.25);background:rgba(255,255,255,0.04)}
-.hero-avatar{width:110px;height:110px;border-radius:20px;object-fit:cover;border:3px solid rgba(59,130,246,0.2);box-shadow:0 8px 32px rgba(59,130,246,0.12);margin-bottom:24px;animation:fadeInUp 0.6s ease both}
-
-/* Reveal */
-.reveal{opacity:0;transform:translateY(30px);transition:all 0.7s cubic-bezier(0.16,1,0.3,1)}
-.reveal.visible{opacity:1;transform:translateY(0)}
-@keyframes fadeInUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
-
-/* Sections */
-section{padding:80px 0}
-.section-label{display:inline-flex;align-items:center;gap:8px;font-size:12px;text-transform:uppercase;letter-spacing:2.5px;font-weight:600;color:var(--accent);margin-bottom:12px;font-family:'JetBrains Mono',monospace}
-.section-label::before{content:'';width:20px;height:2px;background:var(--gradient);border-radius:2px}
-html[dir="rtl"] .section-label::before{display:none}
-html[dir="rtl"] .section-label::after{content:'';width:20px;height:2px;background:var(--gradient);border-radius:2px}
-.section-title{font-size:clamp(28px,4vw,36px);font-weight:700;letter-spacing:-1px;margin-bottom:40px}
-html[dir="rtl"] .section-title{letter-spacing:0}
-
-/* Skills */
-.skills-container{display:flex;flex-direction:column;gap:20px}
-.skill-category-title{font-size:13px;font-weight:600;color:var(--text-dim);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px;font-family:'JetBrains Mono',monospace}
-.skills-row{display:flex;flex-wrap:wrap;gap:8px}
-.skill-chip{padding:8px 18px;border-radius:8px;font-size:13px;font-weight:500;background:var(--card);border:1px solid var(--border);transition:all 0.3s;cursor:default}
-.skill-chip:hover{border-color:var(--accent);background:var(--accent-glow);transform:translateY(-2px);box-shadow:0 4px 16px rgba(59,130,246,0.1)}
-
-/* Projects */
-.projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.project-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;transition:all 0.4s;position:relative;overflow:hidden}
-.project-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gradient);opacity:0;transition:opacity 0.3s}
-.project-card:hover{border-color:rgba(59,130,246,0.2);transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,0.3)}
-.project-card:hover::before{opacity:1}
-.project-name{font-size:16px;font-weight:700;letter-spacing:-0.3px;margin-bottom:8px}
-.project-desc{font-size:13px;color:var(--text-dim);line-height:1.7;margin-bottom:12px}
-.project-stack{display:flex;flex-wrap:wrap;gap:5px}
-.stack-tag{font-size:10px;padding:3px 8px;border-radius:4px;background:rgba(59,130,246,0.08);color:var(--accent);font-family:'JetBrains Mono',monospace;font-weight:500}
-
-/* Timeline */
-.timeline{position:relative;padding-left:28px}
-html[dir="rtl"] .timeline{padding-left:0;padding-right:28px}
-.timeline::before{content:'';position:absolute;left:0;top:8px;bottom:8px;width:2px;background:linear-gradient(180deg,var(--accent),var(--accent3));border-radius:2px}
-html[dir="rtl"] .timeline::before{left:auto;right:0}
-.timeline-item{position:relative;padding:24px 0;border-bottom:1px solid var(--border)}
-.timeline-item:last-child{border-bottom:none}
-.timeline-item::before{content:'';position:absolute;left:-33px;top:30px;width:10px;height:10px;border-radius:50%;background:var(--accent);border:3px solid var(--bg);box-shadow:0 0 0 2px var(--accent)}
-html[dir="rtl"] .timeline-item::before{left:auto;right:-33px}
-.timeline-header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:4px}
-.timeline-role{font-size:16px;font-weight:600}
-.timeline-company{font-size:14px;color:var(--accent);font-weight:500}
-.timeline-date{font-size:12px;color:var(--text-dim);white-space:nowrap;font-family:'JetBrains Mono',monospace;padding:3px 10px;border-radius:4px;background:rgba(255,255,255,0.03);border:1px solid var(--border)}
-.timeline-desc{font-size:14px;color:var(--text-dim);line-height:1.8;margin-top:8px}
-
-/* Contact */
-.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
-.contact-card{display:flex;align-items:center;gap:14px;padding:18px 20px;border-radius:12px;background:var(--card);border:1px solid var(--border);text-decoration:none;color:var(--text);transition:all 0.3s}
-.contact-card:hover{border-color:rgba(59,130,246,0.2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.2)}
-.contact-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
-.contact-icon.email{background:rgba(59,130,246,0.12);color:var(--accent)}
-.contact-icon.linkedin{background:rgba(6,182,212,0.12);color:var(--accent2)}
-.contact-icon.phone{background:rgba(34,197,94,0.12);color:#22c55e}
-.contact-card .label{font-size:11px;color:var(--text-dim);font-weight:500;text-transform:uppercase;letter-spacing:1px}
-.contact-card .value{font-size:14px;font-weight:500}
-
-/* Languages */
-.lang-cards{display:flex;gap:16px;flex-wrap:wrap}
-.lang-card{padding:20px 28px;border-radius:12px;background:var(--card);border:1px solid var(--border);min-width:140px;text-align:center;transition:all 0.3s}
-.lang-card:hover{border-color:rgba(59,130,246,0.2);transform:translateY(-2px)}
-.lang-card .name{font-size:16px;font-weight:600;margin-bottom:4px}
-.lang-card .level{font-size:12px;color:var(--text-dim);font-family:'JetBrains Mono',monospace}
-
-footer{padding:40px 0;border-top:1px solid var(--border);text-align:center;font-size:13px;color:var(--text-dim);font-family:'JetBrains Mono',monospace}
+/* Topbar */
+.topbar{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(248,245,240,0.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);transition:background 0.4s}
+html.dark .topbar{background:rgba(17,19,24,0.9)}
+.topbar-inner{max-width:1100px;margin:0 auto;padding:14px 32px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-family:'Playfair Display',serif;font-weight:800;font-size:22px;color:var(--ink);letter-spacing:-1px}
+.logo em{font-style:italic;color:var(--accent);font-weight:500}
+.topbar-right{display:flex;align-items:center;gap:16px}
+.topbar-nav{display:flex;gap:24px}
+.topbar-nav a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;transition:color 0.3s;letter-spacing:0.5px;text-transform:uppercase}
+.topbar-nav a:hover{color:var(--ink)}
+.icon-btn{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;border:1.5px solid var(--border);background:var(--white);color:var(--ink);transition:all 0.3s;font-size:16px}
+.icon-btn:hover{border-color:var(--warm);background:var(--warm-glow)}
+.lang-btn{font-family:'IBM Plex Sans Arabic','DM Sans',sans-serif;padding:5px 14px;border-radius:100px;font-size:12px;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:var(--white);color:var(--ink);transition:all 0.3s}
+.lang-btn:hover{border-color:var(--warm);background:var(--warm-glow)}
 
 /* Hamburger */
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
-.hamburger span{width:22px;height:2px;background:var(--text);border-radius:2px;transition:all 0.3s}
-.mobile-menu{display:none;position:fixed;top:54px;left:0;right:0;background:rgba(11,15,20,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:20px 28px;z-index:99;flex-direction:column;gap:16px}
+.hamburger span{width:22px;height:1.5px;background:var(--ink);border-radius:2px;transition:background 0.3s}
+.mobile-menu{display:none;position:fixed;top:56px;left:0;right:0;background:rgba(248,245,240,0.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:24px 32px;z-index:99;flex-direction:column;gap:12px}
+html.dark .mobile-menu{background:rgba(17,19,24,0.97)}
 .mobile-menu.open{display:flex}
-.mobile-menu a{color:var(--text-dim);text-decoration:none;font-size:15px;font-weight:500;padding:8px 0;border-bottom:1px solid var(--border);transition:color 0.3s}
-.mobile-menu a:last-child{border-bottom:none}
-.mobile-menu a:hover{color:var(--text)}
+.mobile-menu a{color:var(--ink-light);text-decoration:none;font-size:15px;font-weight:500;padding:10px 0;border-bottom:1px solid var(--border-light)}
+.mobile-menu a:last-child{border:none}
+
+/* Hero */
+.hero{padding:140px 0 80px}
+.hero-grid{display:grid;grid-template-columns:180px 1fr;gap:48px;align-items:start}
+.hero-photo{width:180px;height:220px;border-radius:12px;object-fit:cover;border:2px solid var(--border);box-shadow:8px 8px 0 var(--warm-glow);animation:fadeIn 0.8s ease both;transition:border-color 0.3s}
+.hero-text{padding-top:8px}
+.hero-status{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:2px;margin-bottom:16px;font-family:'Space Mono',monospace;animation:fadeIn 0.8s ease 0.1s both}
+.hero-status .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:blink 2s ease infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+.hero-name{font-size:clamp(38px,5.5vw,58px);font-weight:800;line-height:1.05;letter-spacing:-2px;margin-bottom:12px;animation:fadeIn 0.8s ease 0.15s both}
+html[dir="rtl"] .hero-name{letter-spacing:0}
+.hero-name em{font-style:italic;font-weight:500;color:var(--warm-dark)}
+.hero-role{font-size:18px;color:var(--muted);font-weight:400;margin-bottom:20px;animation:fadeIn 0.8s ease 0.2s both}
+.hero-bio{font-size:15px;color:var(--ink-light);line-height:1.85;margin-bottom:32px;animation:fadeIn 0.8s ease 0.25s both}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;animation:fadeIn 0.8s ease 0.3s both}
+@keyframes fadeIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border-radius:100px;font-size:14px;font-weight:600;text-decoration:none;transition:all 0.3s;cursor:pointer;border:none;font-family:inherit}
+.btn-dark{background:var(--ink);color:var(--cream)}
+.btn-dark:hover{opacity:0.85;transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,0,0,0.12)}
+.btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--border)}
+.btn-ghost:hover{border-color:var(--ink);background:rgba(0,0,0,0.02)}
+html.dark .btn-ghost:hover{background:rgba(255,255,255,0.04)}
+.hero-avatar{width:120px;height:120px;border-radius:22px;object-fit:cover;border:3px solid var(--border);margin-bottom:24px;animation:fadeIn 0.6s ease both}
+.divider{width:100%;height:1px;background:var(--border);margin:0;transition:background 0.3s}
+
+/* Sections */
+.sect{padding:72px 0}
+.sect-label{font-family:'Space Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:3px;color:var(--warm-dark);font-weight:700;margin-bottom:8px}
+.sect-title{font-size:clamp(26px,3.5vw,34px);font-weight:700;letter-spacing:-1px;margin-bottom:36px;line-height:1.2}
+html[dir="rtl"] .sect-title{letter-spacing:0}
+
+.rv{opacity:0;transform:translateY(24px);transition:all 0.65s cubic-bezier(0.16,1,0.3,1)}
+.rv.vis{opacity:1;transform:translateY(0)}
+
+/* Skills */
+.skills-group{margin-bottom:24px}
+.skills-group-label{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px;font-family:'Space Mono',monospace}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{padding:7px 18px;border-radius:100px;font-size:13px;font-weight:500;background:var(--white);border:1.5px solid var(--border);transition:all 0.3s;cursor:default}
+.tag:hover{border-color:var(--warm);background:var(--warm-glow);transform:translateY(-1px)}
+
+/* Projects */
+.proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.proj{background:var(--white);border:1.5px solid var(--border);border-radius:12px;padding:28px;transition:all 0.35s;position:relative}
+.proj::after{content:'';position:absolute;bottom:0;left:24px;right:24px;height:2px;background:linear-gradient(90deg,var(--warm),var(--accent));opacity:0;transition:opacity 0.3s;border-radius:2px}
+.proj:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.06);border-color:var(--warm)}
+html.dark .proj:hover{box-shadow:0 8px 24px rgba(0,0,0,0.2)}
+.proj:hover::after{opacity:1}
+.proj-name{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;margin-bottom:8px;letter-spacing:-0.3px}
+html[dir="rtl"] .proj-name{font-family:'IBM Plex Sans Arabic',serif;letter-spacing:0}
+.proj-desc{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:14px}
+.proj-tech{display:flex;flex-wrap:wrap;gap:5px}
+.proj-tech span{font-size:10px;padding:3px 10px;border-radius:100px;background:var(--accent-glow);color:var(--accent);font-family:'Space Mono',monospace;font-weight:700}
+
+/* Timeline */
+.tl{border-left:2px solid var(--border);padding-left:32px;margin-left:8px}
+html[dir="rtl"] .tl{border-left:none;border-right:2px solid var(--border);padding-left:0;padding-right:32px;margin-left:0;margin-right:8px}
+.tl-item{position:relative;padding-bottom:36px}
+.tl-item:last-child{padding-bottom:0}
+.tl-item::before{content:'';position:absolute;left:-39px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--cream);border:2.5px solid var(--warm);box-shadow:0 0 0 4px var(--cream);transition:all 0.3s}
+html[dir="rtl"] .tl-item::before{left:auto;right:-39px}
+.tl-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:6px}
+.tl-role{font-size:16px;font-weight:600}
+.tl-co{font-size:14px;color:var(--warm-dark);font-weight:500}
+.tl-date{font-family:'Space Mono',monospace;font-size:11px;color:var(--muted);white-space:nowrap;padding:3px 12px;border-radius:100px;border:1px solid var(--border-light);background:var(--white)}
+.tl-desc{font-size:14px;color:var(--ink-light);line-height:1.8}
+
+/* Langs */
+.lang-row{display:flex;gap:16px;flex-wrap:wrap}
+.lang-pill{padding:16px 32px;border-radius:12px;background:var(--white);border:1.5px solid var(--border);text-align:center;min-width:130px;transition:all 0.3s}
+.lang-pill:hover{border-color:var(--warm);transform:translateY(-2px)}
+.lang-pill .ln{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;margin-bottom:2px}
+html[dir="rtl"] .lang-pill .ln{font-family:'IBM Plex Sans Arabic',serif}
+.lang-pill .ll{font-family:'Space Mono',monospace;font-size:11px;color:var(--muted)}
+
+/* Contact */
+.contact-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.c-card{display:flex;align-items:center;gap:14px;padding:20px;border-radius:12px;background:var(--white);border:1.5px solid var(--border);text-decoration:none;color:var(--ink);transition:all 0.3s}
+.c-card:hover{border-color:var(--warm);transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.05)}
+.c-icon{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;font-weight:700}
+.c-icon.em{background:rgba(212,101,74,0.08);color:var(--accent)}
+.c-icon.ph{background:rgba(34,160,90,0.08);color:#22a05a}
+.c-icon.li{background:rgba(10,102,194,0.08);color:#0a66c2}
+.c-card .c-label{font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:1px;font-family:'Space Mono',monospace}
+.c-card .c-val{font-size:13px;font-weight:500}
+
+footer{padding:48px 32px;text-align:center;font-size:12px;color:var(--muted);font-family:'Space Mono',monospace;border-top:1px solid var(--border)}
+
+/* CV Modal */
+.cv-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);z-index:200;justify-content:center;align-items:flex-start;padding:40px 20px;overflow-y:auto}
+.cv-overlay.open{display:flex}
+.cv-box{background:#fff;color:#1a1a1a;max-width:700px;width:100%;border-radius:12px;padding:48px 44px;position:relative;font-family:'DM Sans',sans-serif;line-height:1.6}
+.cv-close{position:absolute;top:16px;right:16px;width:36px;height:36px;border-radius:50%;border:1px solid #ddd;background:#fff;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;color:#333}
+.cv-close:hover{background:#f5f5f5}
+.cv-actions{position:absolute;top:16px;right:64px;display:flex;gap:8px}
+.cv-print{padding:6px 16px;border-radius:100px;border:1px solid #ddd;background:#fff;cursor:pointer;font-size:12px;font-weight:600;font-family:'DM Sans',sans-serif;color:#333}
+.cv-print:hover{background:#f5f5f5}
+
+/* CV Content - ATS friendly */
+.cv-name{font-family:'DM Sans',sans-serif;font-size:28px;font-weight:700;margin-bottom:6px;color:#1a1a1a}
+.cv-role-text{font-size:15px;color:#555;margin-bottom:10px}
+.cv-contact-bar{display:flex;flex-wrap:wrap;gap:16px;margin-bottom:24px;font-size:13px}
+.cv-contact-bar a{color:#1a1a1a;text-decoration:none;border-bottom:1px solid #ccc}
+.cv-contact-bar a:hover{border-color:#1a1a1a}
+.cv-section-title{font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;border-bottom:2px solid #1a1a1a;padding-bottom:4px;margin-bottom:16px;margin-top:28px;color:#1a1a1a}
+.cv-exp-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px}
+.cv-exp-role{font-size:15px;font-weight:600}
+.cv-exp-co{font-size:14px;color:#555}
+.cv-exp-date{font-size:12px;color:#777;white-space:nowrap}
+.cv-exp-list{padding-left:18px;margin-top:6px;margin-bottom:16px}
+.cv-exp-list li{font-size:13px;color:#444;margin-bottom:4px}
+.cv-skills-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.cv-skill{font-size:12px;padding:4px 12px;background:#f3f3f3;border-radius:4px;color:#333}
+.cv-lang-row{display:flex;gap:24px;font-size:13px;color:#444}
+.cv-course{font-size:13px;color:#444;margin-bottom:4px}
+
+/* Print */
+@media print{
+  .cv-close,.cv-actions,.topbar,.mobile-menu,.cv-overlay{display:none!important}
+  .cv-box{box-shadow:none;border-radius:0;padding:24px;max-width:100%}
+  body{background:#fff!important}
+}
 
 /* Responsive */
-@media(max-width:640px){
-  .nav-links{display:none}
-  .hamburger{display:flex}
-  .hero h1{font-size:clamp(30px,8vw,42px)}
-  .hero .subtitle{font-size:17px}
-  .hero .bio{font-size:14px}
-  .hero-avatar{width:90px;height:90px;border-radius:16px}
-  .hero-actions{flex-direction:column}
+@media(max-width:700px){
+  .topbar-nav{display:none}.hamburger{display:flex}
+  .hero-grid{grid-template-columns:1fr;gap:24px;text-align:center}
+  .hero-photo{width:120px;height:150px;margin:0 auto;box-shadow:6px 6px 0 var(--warm-glow)}
+  .hero-actions{justify-content:center}
+  .hero-bio{margin-left:auto;margin-right:auto}
+  .proj-grid{grid-template-columns:1fr}
+  .tl{padding-left:24px;margin-left:4px}
+  html[dir="rtl"] .tl{padding-right:24px;margin-right:4px}
+  .tl-item::before{left:-31px}
+  html[dir="rtl"] .tl-item::before{left:auto;right:-31px}
+  .tl-top{flex-direction:column}
+  .contact-row{grid-template-columns:1fr}
+  .sect{padding:56px 0}.hero{padding:120px 0 56px}
   .btn{width:100%;justify-content:center;padding:14px 28px}
-  .projects-grid{grid-template-columns:1fr}
-  .timeline{padding-left:20px}
-  html[dir="rtl"] .timeline{padding-right:20px}
-  .timeline-item::before{left:-25px}
-  html[dir="rtl"] .timeline-item::before{left:auto;right:-25px}
-  .timeline-header{flex-direction:column}
-  .contact-grid{grid-template-columns:1fr}
-  section{padding:60px 0}
-  .section-title{font-size:clamp(24px,6vw,32px);margin-bottom:28px}
-  .skill-chip{padding:6px 14px;font-size:12px}
-  .project-card{padding:20px}
-  .contact-card{padding:14px 16px}
+  .hero-name{font-size:clamp(32px,8vw,44px)}
+  .cv-box{padding:28px 20px}
+  .cv-contact-bar{flex-direction:column;gap:6px}
+  .cv-exp-header{flex-direction:column}
+  .content{padding:0 20px}
+  .topbar-inner{padding:14px 20px}
+  .lang-row{gap:10px}
+  .lang-pill{min-width:100px;padding:14px 20px}
 }
-@media(min-width:641px) and (max-width:900px){
-  .projects-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+@media(min-width:701px) and (max-width:1024px){
+  .contact-row{grid-template-columns:repeat(2,1fr)}
+}
+@media(min-width:1400px){
+  .content{max-width:760px}
 }
 </style>
 </head>
 <body>
-<div class="glow-orb glow-1"></div>
-<div class="glow-orb glow-2"></div>
-
-<nav>
-  <div class="nav-inner">
-    <div class="nav-logo"><span>N</span>A</div>
-    <div class="nav-right">
-      <div class="nav-links">
-        <a href="#skills" data-en="Skills" data-ar="المهارات">Skills</a>
-        <a href="#projects" data-en="Projects" data-ar="المشاريع">Projects</a>
-        <a href="#experience" data-en="Experience" data-ar="الخبرات">Experience</a>
-        <a href="#contact" data-en="Contact" data-ar="التواصل">Contact</a>
-      </div>
-      <button class="lang-toggle" onclick="toggleLang()">عربي</button>
-      <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
-    </div>
+<div class="topbar"><div class="topbar-inner">
+  <div class="logo">N<em>A</em></div>
+  <div class="topbar-right">
+    <nav class="topbar-nav">
+      <a href="#skills" data-en="Skills" data-ar="المهارات">Skills</a>
+      <a href="#projects" data-en="Projects" data-ar="المشاريع">Projects</a>
+      <a href="#experience" data-en="Experience" data-ar="الخبرات">Experience</a>
+      <a href="#contact" data-en="Contact" data-ar="التواصل">Contact</a>
+    </nav>
+    <button class="lang-btn" onclick="toggleLang()">عربي</button>
+    <button class="icon-btn" onclick="toggleDark()" id="darkBtn" title="Toggle dark mode">🌙</button>
+    <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
   </div>
-</nav>
+</div></div>
 
-<div class="mobile-menu" id="mobileMenu">
+<div class="mobile-menu" id="mob">
   <a href="#skills" onclick="closeMenu()" data-en="Skills" data-ar="المهارات">Skills</a>
   <a href="#projects" onclick="closeMenu()" data-en="Projects" data-ar="المشاريع">Projects</a>
   <a href="#experience" onclick="closeMenu()" data-en="Experience" data-ar="الخبرات">Experience</a>
   <a href="#contact" onclick="closeMenu()" data-en="Contact" data-ar="التواصل">Contact</a>
 </div>
 
-<div class="container">
+<!-- CV Modal -->
+<div class="cv-overlay" id="cvModal">
+<div class="cv-box" id="cvContent">
+  <button class="cv-close" onclick="closeCV()">✕</button>
+  <div class="cv-actions"><button class="cv-print" onclick="window.print()">🖨 Print / Save PDF</button></div>
 
-  <section class="hero" id="hero">
-    <div class="hero-content">
-      <img src="profile.jpeg" alt="Nawaf AlHarbi" class="hero-avatar">
-      <div class="hero-badge"><span class="dot"></span> <span data-en="Open to work" data-ar="متاح للعمل">Open to work</span></div>
-      <h1 data-en="Nawaf <span class='gradient-text'>AlHarbi</span>" data-ar="نواف <span class='gradient-text'>الحربي</span>">Nawaf <span class="gradient-text">AlHarbi</span></h1>
-      <div class="subtitle" data-en="Web Developer & IT Specialist" data-ar="مطور مواقع وفني تقنية معلومات">Web Developer & IT Specialist</div>
-      <p class="bio" data-en="Web developer and IT specialist based in Riyadh with hands-on experience in building and managing websites, troubleshooting hardware and software issues, and setting up internal systems. I enjoy solving technical problems and keeping things running smoothly." data-ar="مطور مواقع وفني تقنية معلومات مقيم في الرياض، لدي خبرة عملية في بناء وإدارة المواقع الإلكترونية، وحل مشاكل الأجهزة والبرامج، وإعداد أنظمة العمل الداخلية. أستمتع بحل المشكلات التقنية والحفاظ على سير العمل بسلاسة.">Web developer and IT specialist based in Riyadh with hands-on experience in building and managing websites, troubleshooting hardware and software issues, and setting up internal systems. I enjoy solving technical problems and keeping things running smoothly.</p>
-      <div class="hero-actions">
-        <a href="#contact" class="btn btn-primary">
-          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          <span data-en="Get in Touch" data-ar="تواصل معي">Get in Touch</span>
-        </a>
-        <a href="#projects" class="btn btn-outline">
-          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-          <span data-en="View Projects" data-ar="عرض المشاريع">View Projects</span>
-        </a>
-      </div>
-    </div>
-  </section>
+  <div class="cv-name">Nawaf AlHarbi</div>
+  <div class="cv-role-text">Web Developer & IT Specialist</div>
+  <div class="cv-contact-bar">
+    <span>📍 Riyadh, Saudi Arabia</span>
+    <a href="tel:+966556396968">📞 +966 55 639 6968</a>
+    <a href="mailto:nawaf@nawafalharbi.com">✉ nawaf@nawafalharbi.com</a>
+    <a href="https://www.linkedin.com/in/nawaf-alharbi-086699403" target="_blank"><svg style="vertical-align:middle;margin-right:4px" width="14" height="14" viewBox="0 0 24 24" fill="#0a66c2"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg>nawaf-alharbi</a>
+  </div>
 
-  <section id="skills">
-    <div class="reveal"><div class="section-label" data-en="Skills" data-ar="المهارات">Skills</div><div class="section-title" data-en="What I Work With" data-ar="الأدوات والتقنيات">What I Work With</div></div>
-    <div class="skills-container">
-      <div class="reveal"><div class="skill-category-title" data-en="Web Development" data-ar="تطوير المواقع">Web Development</div><div class="skills-row"><div class="skill-chip">Next.js</div><div class="skill-chip">TypeScript</div><div class="skill-chip">React</div><div class="skill-chip">HTML / CSS</div><div class="skill-chip">Python</div><div class="skill-chip">SQLite</div><div class="skill-chip">Drizzle ORM</div><div class="skill-chip">Web Design</div></div></div>
-      <div class="reveal"><div class="skill-category-title" data-en="IT & Infrastructure" data-ar="تقنية المعلومات والبنية التحتية">IT & Infrastructure</div><div class="skills-row"><div class="skill-chip" data-en="Hardware Troubleshooting" data-ar="صيانة الأجهزة">Hardware Troubleshooting</div><div class="skill-chip" data-en="Software Installation" data-ar="تثبيت البرامج">Software Installation</div><div class="skill-chip" data-en="System Configuration" data-ar="إعداد الأنظمة">System Configuration</div><div class="skill-chip">VPS Deployment</div><div class="skill-chip">DNS Management</div><div class="skill-chip">Git</div><div class="skill-chip">PM2</div><div class="skill-chip">NFC Technology</div></div></div>
-      <div class="reveal"><div class="skill-category-title" data-en="Tools & Software" data-ar="الأدوات والبرامج">Tools & Software</div><div class="skills-row"><div class="skill-chip">Adobe Photoshop</div><div class="skill-chip">Microsoft Excel</div><div class="skill-chip">Microsoft PowerPoint</div><div class="skill-chip">Microsoft Word</div><div class="skill-chip">Notion</div><div class="skill-chip">VS Code</div></div></div>
-    </div>
-  </section>
+  <div class="cv-section-title">Professional Summary</div>
+  <p style="font-size:13px;color:#444;line-height:1.7">Self-motivated web developer and IT specialist with practical experience in full-stack web development, website management, hardware and software troubleshooting, and system configuration. Skilled in building responsive web applications using modern frameworks. Strong problem-solving abilities with a commitment to continuous learning and professional growth. Seeking to leverage technical skills and hands-on experience in a dynamic IT environment.</p>
 
-  <section id="projects">
-    <div class="reveal"><div class="section-label" data-en="Projects" data-ar="المشاريع">Projects</div><div class="section-title" data-en="What I've Built" data-ar="مشاريع قمت ببنائها">What I've Built</div></div>
-    <div class="projects-grid">
-      <div class="reveal"><div class="project-card"><div class="project-name">ntag.io</div><div class="project-desc" data-en="Full-stack NFC digital identity platform. Users create profiles and share them via NFC cards with a single tap. Built, designed, and deployed independently." data-ar="منصة هوية رقمية متكاملة تعمل بتقنية NFC. يمكن للمستخدمين إنشاء ملفاتهم الشخصية ومشاركتها بلمسة واحدة. تم بناؤها وتصميمها ونشرها بشكل مستقل.">Full-stack NFC digital identity platform. Users create profiles and share them via NFC cards with a single tap. Built, designed, and deployed independently.</div><div class="project-stack"><span class="stack-tag">Next.js</span><span class="stack-tag">TypeScript</span><span class="stack-tag">SQLite</span><span class="stack-tag">Drizzle</span><span class="stack-tag">VPS</span></div></div></div>
-      <div class="reveal"><div class="project-card"><div class="project-name" data-en="School Website" data-ar="موقع المدرسة">School Website</div><div class="project-desc" data-en="Designed and developed a website for Safwan Bin Umayya School, covering school information, news, and resources for students and staff." data-ar="تصميم وتطوير موقع إلكتروني لمدرسة صفوان بن أمية يشمل معلومات المدرسة والأخبار والموارد للطلاب والموظفين.">Designed and developed a website for Safwan Bin Umayya School, covering school information, news, and resources for students and staff.</div><div class="project-stack"><span class="stack-tag">HTML</span><span class="stack-tag">CSS</span><span class="stack-tag">Web Design</span></div></div></div>
-      <div class="reveal"><div class="project-card"><div class="project-name" data-en="Time Management Tool" data-ar="أداة إدارة الوقت">Time Management Tool</div><div class="project-desc" data-en="Interactive web-based time management application to help users organize tasks, set priorities, and track their daily productivity." data-ar="تطبيق ويب تفاعلي لإدارة الوقت يساعد المستخدمين على تنظيم المهام وتحديد الأولويات ومتابعة إنتاجيتهم اليومية.">Interactive web-based time management application to help users organize tasks, set priorities, and track their daily productivity.</div><div class="project-stack"><span class="stack-tag">HTML</span><span class="stack-tag">CSS</span><span class="stack-tag">JavaScript</span></div></div></div>
-      <div class="reveal"><div class="project-card"><div class="project-name" data-en="AI Chat App" data-ar="تطبيق محادثة ذكاء اصطناعي">AI Chat App</div><div class="project-desc" data-en="Built an AI-powered chat interface for classroom use, enabling students to interact with AI for learning and research purposes." data-ar="بناء واجهة محادثة تعمل بالذكاء الاصطناعي للاستخدام الصفي، تمكّن الطلاب من التفاعل مع الذكاء الاصطناعي لأغراض التعلم والبحث.">Built an AI-powered chat interface for classroom use, enabling students to interact with AI for learning and research purposes.</div><div class="project-stack"><span class="stack-tag">AI Integration</span><span class="stack-tag">Web App</span></div></div></div>
-    </div>
-  </section>
+  <div class="cv-section-title">Experience</div>
+  <div style="margin-bottom:20px">
+    <div class="cv-exp-header"><div><div class="cv-exp-role">Main Programmer</div><div class="cv-exp-co">ntag.io</div></div><div class="cv-exp-date">2024 — Present</div></div>
+    <ul class="cv-exp-list">
+      <li>Developed and launched a full-stack NFC-powered digital identity platform from concept to deployment.</li>
+      <li>Built the frontend and backend using Next.js (App Router) and TypeScript, ensuring clean architecture.</li>
+      <li>Designed and implemented database schemas using SQLite with Drizzle ORM for efficient data management.</li>
+      <li>Deployed and maintained the production application on a VPS using PM2 process manager and Nginx.</li>
+      <li>Implemented user authentication, rate limiting, and security utilities to protect the platform.</li>
+      <li>Managed domain configuration, DNS settings, and SSL certificates for production environment.</li>
+      <li>Handled ongoing feature development, bug fixes, testing, and performance optimization.</li>
+      <li>Integrated NFC technology (NTAG chips) with web-based user profiles for seamless digital identity sharing.</li>
+    </ul>
+  </div>
+  <div>
+    <div class="cv-exp-header"><div><div class="cv-exp-role">Sales Associate & Cashier</div><div class="cv-exp-co">Al-Mustashar Men's Essentials</div></div><div class="cv-exp-date">Nov 2022 — Jan 2023</div></div>
+    <ul class="cv-exp-list">
+      <li>Operated point-of-sale systems and processed daily financial transactions with accuracy.</li>
+      <li>Provided customer assistance with product selection, inquiries, and issue resolution.</li>
+      <li>Maintained organized inventory records and ensured consistent stock availability.</li>
+      <li>Collaborated with team members to meet sales targets and maintain store standards.</li>
+      <li>Developed strong interpersonal communication, teamwork, and time management skills.</li>
+    </ul>
+  </div>
 
-  <section id="experience">
-    <div class="reveal"><div class="section-label" data-en="Experience" data-ar="الخبرات">Experience</div><div class="section-title" data-en="Work History" data-ar="السيرة المهنية">Work History</div></div>
-    <div class="timeline reveal">
-      <div class="timeline-item">
-        <div class="timeline-header"><div><div class="timeline-role" data-en="Sales Associate & Cashier" data-ar="بائع وكاشير">Sales Associate & Cashier</div><div class="timeline-company" data-en="Al-Mustashar Men's Essentials" data-ar="المستشار للمستلزمات الرجالية">Al-Mustashar Men's Essentials</div></div><div class="timeline-date">Nov 2022 — Jan 2023</div></div>
-        <div class="timeline-desc" data-en="Handled point-of-sale operations, managed daily transactions, assisted customers with product selection, and maintained organized inventory. Developed strong communication, customer service, and problem-solving skills in a fast-paced retail environment." data-ar="إدارة عمليات نقاط البيع والمعاملات اليومية، مساعدة العملاء في اختيار المنتجات، والحفاظ على تنظيم المخزون. تطوير مهارات التواصل وخدمة العملاء وحل المشكلات في بيئة تجزئة سريعة الإيقاع.">Handled point-of-sale operations, managed daily transactions, assisted customers with product selection, and maintained organized inventory. Developed strong communication, customer service, and problem-solving skills in a fast-paced retail environment.</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-header"><div><div class="timeline-role" data-en="Main Programmer" data-ar="المبرمج الرئيسي">Main Programmer</div><div class="timeline-company">ntag.io</div></div><div class="timeline-date">2024 — Present</div></div>
-        <div class="timeline-desc" data-en="Lead developer of an NFC-powered digital identity platform. Responsible for full-stack development using Next.js and TypeScript, database design with SQLite and Drizzle ORM, server deployment and maintenance via PM2 on VPS, and ongoing feature development and bug fixes." data-ar="المطور الرئيسي لمنصة هوية رقمية تعمل بتقنية NFC. مسؤول عن التطوير الكامل باستخدام Next.js و TypeScript، تصميم قواعد البيانات بـ SQLite و Drizzle ORM، نشر وصيانة السيرفر عبر PM2 على VPS، وتطوير الميزات الجديدة وإصلاح الأخطاء.">Lead developer of an NFC-powered digital identity platform. Responsible for full-stack development using Next.js and TypeScript, database design with SQLite and Drizzle ORM, server deployment and maintenance via PM2 on VPS, and ongoing feature development and bug fixes.</div>
-      </div>
-    </div>
-  </section>
+  <div class="cv-section-title">Projects</div>
+  <div style="margin-bottom:12px">
+    <div style="font-size:14px;font-weight:600">ntag.io — NFC Digital Identity Platform</div>
+    <div style="font-size:12px;color:#777;margin-bottom:4px">Next.js · TypeScript · SQLite · Drizzle ORM · PM2 · VPS</div>
+    <div style="font-size:13px;color:#444">Full-stack web platform enabling users to create digital profiles and share them instantly via NFC cards. Handled all aspects including UI/UX design, backend development, database architecture, and server deployment.</div>
+  </div>
+  <div style="margin-bottom:12px">
+    <div style="font-size:14px;font-weight:600">Safwan Bin Umayya School Website</div>
+    <div style="font-size:12px;color:#777;margin-bottom:4px">HTML · CSS · Responsive Design</div>
+    <div style="font-size:13px;color:#444">Designed and developed a responsive website for the school, providing information about academics, news, and resources for students, parents, and staff.</div>
+  </div>
+  <div style="margin-bottom:12px">
+    <div style="font-size:14px;font-weight:600">Time Management Tool</div>
+    <div style="font-size:12px;color:#777;margin-bottom:4px">HTML · CSS · JavaScript</div>
+    <div style="font-size:13px;color:#444">Built an interactive web-based application for organizing tasks, setting priorities, tracking deadlines, and improving daily productivity.</div>
+  </div>
+  <div style="margin-bottom:12px">
+    <div style="font-size:14px;font-weight:600">AI Chat Application</div>
+    <div style="font-size:12px;color:#777;margin-bottom:4px">AI API Integration · Web Development</div>
+    <div style="font-size:13px;color:#444">Created an AI-powered chat interface for classroom use, allowing students to interact with artificial intelligence for learning assistance and research support.</div>
+  </div>
 
-  <section>
-    <div class="reveal"><div class="section-label" data-en="Training" data-ar="التدريب">Training</div><div class="section-title" data-en="Courses & Certifications" data-ar="الدورات والشهادات">Courses & Certifications</div></div>
-    <div class="skills-container"><div class="reveal"><div class="skill-category-title" data-en="Technical" data-ar="تقنية">Technical</div><div class="skills-row"><div class="skill-chip">Microsoft Excel</div><div class="skill-chip">HTML & CSS</div><div class="skill-chip">Python</div><div class="skill-chip" data-en="Innovative Ideas in Tech Startups" data-ar="توليد الأفكار الابتكارية في المشاريع التقنية">Innovative Ideas in Tech Startups</div><div class="skill-chip" data-en="Responsive Web Development" data-ar="تطوير المواقع المتجاوبة">Responsive Web Development</div></div></div></div>
-  </section>
+  <div class="cv-section-title">Technical Skills</div>
+  <div style="margin-bottom:10px"><strong style="font-size:12px;color:#777">Web Development:</strong></div>
+  <div class="cv-skills-row"><span class="cv-skill">Next.js</span><span class="cv-skill">TypeScript</span><span class="cv-skill">React</span><span class="cv-skill">HTML5</span><span class="cv-skill">CSS3</span><span class="cv-skill">JavaScript</span><span class="cv-skill">Python</span><span class="cv-skill">SQLite</span><span class="cv-skill">Drizzle ORM</span><span class="cv-skill">Responsive Design</span></div>
+  <div style="margin-bottom:10px;margin-top:14px"><strong style="font-size:12px;color:#777">IT & System Administration:</strong></div>
+  <div class="cv-skills-row"><span class="cv-skill">Hardware Troubleshooting</span><span class="cv-skill">Software Installation & Configuration</span><span class="cv-skill">Operating System Setup</span><span class="cv-skill">VPS Deployment</span><span class="cv-skill">DNS Management</span><span class="cv-skill">SSL Configuration</span><span class="cv-skill">Git Version Control</span><span class="cv-skill">PM2 Process Manager</span><span class="cv-skill">NFC Technology</span></div>
+  <div style="margin-bottom:10px;margin-top:14px"><strong style="font-size:12px;color:#777">Software & Tools:</strong></div>
+  <div class="cv-skills-row"><span class="cv-skill">Adobe Photoshop</span><span class="cv-skill">Microsoft Excel</span><span class="cv-skill">Microsoft Word</span><span class="cv-skill">Microsoft PowerPoint</span><span class="cv-skill">Notion</span><span class="cv-skill">VS Code</span><span class="cv-skill">Graphic Design</span></div>
 
-  <section>
-    <div class="reveal"><div class="section-label" data-en="Languages" data-ar="اللغات">Languages</div><div class="section-title" data-en="I Communicate In" data-ar="اللغات التي أتحدثها">I Communicate In</div></div>
-    <div class="lang-cards reveal">
-      <div class="lang-card"><div class="name">العربية</div><div class="level" data-en="Native" data-ar="اللغة الأم">Native</div></div>
-      <div class="lang-card"><div class="name">English</div><div class="level" data-en="Full Professional Proficiency" data-ar="إجادة مهنية كاملة">Full Professional Proficiency</div></div>
-      <div class="lang-card"><div class="name">日本語</div><div class="level" data-en="Basic" data-ar="مبتدئ">Basic</div></div>
-    </div>
-  </section>
+  <div class="cv-section-title">Courses & Certifications</div>
+  <ul class="cv-exp-list">
+    <li>Microsoft Excel — Professional Certification</li>
+    <li>HTML & CSS — Web Development Fundamentals</li>
+    <li>Python — Programming Fundamentals</li>
+    <li>Responsive Web Development</li>
+    <li>Innovative Ideas in Tech Startups</li>
+  </ul>
 
-  <section id="contact">
-    <div class="reveal"><div class="section-label" data-en="Contact" data-ar="التواصل">Contact</div><div class="section-title" data-en="Let's Connect" data-ar="تواصل معي">Let's Connect</div></div>
-    <div class="contact-grid reveal">
-      <a href="mailto:nawaf@nawafalharbi.com" class="contact-card"><div class="contact-icon email">✉</div><div><div class="label" data-en="Email" data-ar="البريد">Email</div><div class="value">nawaf@nawafalharbi.com</div></div></a>
-      <a href="tel:+966556396968" class="contact-card"><div class="contact-icon phone">☎</div><div><div class="label" data-en="Phone" data-ar="الجوال">Phone</div><div class="value" dir="ltr">+966 55 639 6968</div></div></a>
-      <a href="https://www.linkedin.com/in/nawaf-alharbi-086699403" target="_blank" class="contact-card"><div class="contact-icon linkedin">in</div><div><div class="label">LinkedIn</div><div class="value">Nawaf AlHarbi</div></div></a>
-    </div>
-  </section>
+  <div class="cv-section-title">Languages</div>
+  <div class="cv-lang-row">
+    <span><strong>Arabic</strong> — Native Speaker</span>
+    <span><strong>English</strong> — Full Professional Proficiency</span>
+    <span><strong>Japanese</strong> — Basic (Elementary)</span>
+  </div>
 
-  <footer><p>&copy; 2026 Nawaf AlHarbi</p></footer>
+  <div class="cv-section-title">Interests</div>
+  <p style="font-size:13px;color:#444">Web Technologies · Open Source · Specialty Coffee · Fitness · Game Design · Automotive</p>
 </div>
+</div>
+
+<div class="page"><div class="content">
+  <section class="hero">
+    <div class="hero-grid">
+      <img src="profile.jpeg" alt="Nawaf AlHarbi" class="hero-photo">
+      <div class="hero-text">
+        <div class="hero-status"><span class="dot"></span> <span data-en="Open to work" data-ar="متاح للعمل">Open to work</span></div>
+        <h1 class="hero-name" data-en="Nawaf<br><em>AlHarbi</em>" data-ar="نواف<br><em>الحربي</em>">Nawaf<br><em>AlHarbi</em></h1>
+        <div class="hero-role" data-en="Web Developer & IT Specialist" data-ar="مطور مواقع وفني تقنية معلومات">Web Developer & IT Specialist</div>
+        <p class="hero-bio" data-en="Web developer and IT specialist based in Riyadh with hands-on experience in building and managing websites, troubleshooting hardware and software issues, and setting up internal systems. I enjoy solving technical problems and keeping things running smoothly." data-ar="مطور مواقع وفني تقنية معلومات مقيم في الرياض، لدي خبرة عملية في بناء وإدارة المواقع الإلكترونية، وحل مشاكل الأجهزة والبرامج، وإعداد أنظمة العمل الداخلية. أستمتع بحل المشكلات التقنية والحفاظ على سير العمل بسلاسة.">Web developer and IT specialist based in Riyadh with hands-on experience in building and managing websites, troubleshooting hardware and software issues, and setting up internal systems. I enjoy solving technical problems and keeping things running smoothly.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-dark"><span data-en="Get in Touch" data-ar="تواصل معي">Get in Touch</span></a>
+          <a href="javascript:void(0)" onclick="openCV()" class="btn btn-ghost"><span data-en="View CV" data-ar="عرض السيرة الذاتية">View CV</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="divider"></div>
+
+  <section class="sect" id="skills">
+    <div class="rv"><div class="sect-label" data-en="Skills" data-ar="المهارات">Skills</div><div class="sect-title" data-en="What I Work With" data-ar="الأدوات والتقنيات">What I Work With</div></div>
+    <div class="rv skills-group"><div class="skills-group-label" data-en="Web Development" data-ar="تطوير المواقع">Web Development</div><div class="tags"><span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">React</span><span class="tag">HTML / CSS</span><span class="tag">Python</span><span class="tag">SQLite</span><span class="tag">Drizzle ORM</span><span class="tag">Web Design</span></div></div>
+    <div class="rv skills-group"><div class="skills-group-label" data-en="IT & Infrastructure" data-ar="تقنية المعلومات والبنية التحتية">IT & Infrastructure</div><div class="tags"><span class="tag" data-en="Hardware Troubleshooting" data-ar="صيانة الأجهزة">Hardware Troubleshooting</span><span class="tag" data-en="Software Installation" data-ar="تثبيت البرامج">Software Installation</span><span class="tag" data-en="System Configuration" data-ar="إعداد الأنظمة">System Configuration</span><span class="tag">VPS Deployment</span><span class="tag">DNS Management</span><span class="tag">Git</span><span class="tag">PM2</span><span class="tag">NFC Technology</span></div></div>
+    <div class="rv skills-group"><div class="skills-group-label" data-en="Tools & Software" data-ar="الأدوات والبرامج">Tools & Software</div><div class="tags"><span class="tag">Adobe Photoshop</span><span class="tag">Microsoft Excel</span><span class="tag">Microsoft PowerPoint</span><span class="tag">Microsoft Word</span><span class="tag">Notion</span><span class="tag">VS Code</span></div></div>
+  </section>
+  <div class="divider"></div>
+
+  <section class="sect" id="projects">
+    <div class="rv"><div class="sect-label" data-en="Projects" data-ar="المشاريع">Projects</div><div class="sect-title" data-en="What I've Built" data-ar="مشاريع قمت ببنائها">What I've Built</div></div>
+    <div class="proj-grid">
+      <div class="rv"><div class="proj"><div class="proj-name">ntag.io</div><div class="proj-desc" data-en="Full-stack NFC digital identity platform. Users create profiles and share them via NFC cards with a single tap." data-ar="منصة هوية رقمية متكاملة تعمل بتقنية NFC. يمكن للمستخدمين إنشاء ملفاتهم الشخصية ومشاركتها بلمسة واحدة.">Full-stack NFC digital identity platform. Users create profiles and share them via NFC cards with a single tap.</div><div class="proj-tech"><span>Next.js</span><span>TypeScript</span><span>SQLite</span><span>Drizzle</span><span>VPS</span></div></div></div>
+      <div class="rv"><div class="proj"><div class="proj-name" data-en="School Website" data-ar="موقع المدرسة">School Website</div><div class="proj-desc" data-en="Designed and developed a website for Safwan Bin Umayya School for students and staff." data-ar="تصميم وتطوير موقع إلكتروني لمدرسة صفوان بن أمية للطلاب والموظفين.">Designed and developed a website for Safwan Bin Umayya School for students and staff.</div><div class="proj-tech"><span>HTML</span><span>CSS</span><span>Web Design</span></div></div></div>
+      <div class="rv"><div class="proj"><div class="proj-name" data-en="Time Management Tool" data-ar="أداة إدارة الوقت">Time Management Tool</div><div class="proj-desc" data-en="Interactive web app to organize tasks, set priorities, and track daily productivity." data-ar="تطبيق ويب تفاعلي لتنظيم المهام وتحديد الأولويات ومتابعة الإنتاجية.">Interactive web app to organize tasks, set priorities, and track daily productivity.</div><div class="proj-tech"><span>HTML</span><span>CSS</span><span>JavaScript</span></div></div></div>
+      <div class="rv"><div class="proj"><div class="proj-name" data-en="AI Chat App" data-ar="تطبيق محادثة ذكاء اصطناعي">AI Chat App</div><div class="proj-desc" data-en="AI-powered chat interface for classroom learning and research." data-ar="واجهة محادثة بالذكاء الاصطناعي للتعلم والبحث الصفي.">AI-powered chat interface for classroom learning and research.</div><div class="proj-tech"><span>AI Integration</span><span>Web App</span></div></div></div>
+    </div>
+  </section>
+  <div class="divider"></div>
+
+  <section class="sect" id="experience">
+    <div class="rv"><div class="sect-label" data-en="Experience" data-ar="الخبرات">Experience</div><div class="sect-title" data-en="Work History" data-ar="السيرة المهنية">Work History</div></div>
+    <div class="tl rv">
+      <div class="tl-item"><div class="tl-top"><div><div class="tl-role" data-en="Main Programmer" data-ar="المبرمج الرئيسي">Main Programmer</div><div class="tl-co">ntag.io</div></div><div class="tl-date">2024 — Present</div></div><div class="tl-desc" data-en="Lead developer of an NFC-powered digital identity platform. Full-stack development using Next.js and TypeScript, database design, server deployment via PM2 on VPS, and ongoing feature development." data-ar="المطور الرئيسي لمنصة هوية رقمية تعمل بتقنية NFC. التطوير الكامل باستخدام Next.js و TypeScript، تصميم قواعد البيانات، نشر وصيانة السيرفر عبر PM2 على VPS، وتطوير الميزات الجديدة.">Lead developer of an NFC-powered digital identity platform. Full-stack development using Next.js and TypeScript, database design, server deployment via PM2 on VPS, and ongoing feature development.</div></div>
+      <div class="tl-item"><div class="tl-top"><div><div class="tl-role" data-en="Sales Associate & Cashier" data-ar="بائع وكاشير">Sales Associate & Cashier</div><div class="tl-co" data-en="Al-Mustashar Men's Essentials" data-ar="المستشار للمستلزمات الرجالية">Al-Mustashar Men's Essentials</div></div><div class="tl-date">Nov 2022 — Jan 2023</div></div><div class="tl-desc" data-en="Handled POS operations, managed transactions, assisted customers, and maintained inventory. Built communication and problem-solving skills." data-ar="إدارة نقاط البيع والمعاملات اليومية، مساعدة العملاء، والحفاظ على تنظيم المخزون. تطوير مهارات التواصل وحل المشكلات.">Handled POS operations, managed transactions, assisted customers, and maintained inventory. Built communication and problem-solving skills.</div></div>
+    </div>
+  </section>
+  <div class="divider"></div>
+
+  <section class="sect">
+    <div class="rv"><div class="sect-label" data-en="Training" data-ar="التدريب">Training</div><div class="sect-title" data-en="Courses & Certifications" data-ar="الدورات والشهادات">Courses & Certifications</div></div>
+    <div class="rv tags"><span class="tag">Microsoft Excel</span><span class="tag">HTML & CSS</span><span class="tag">Python</span><span class="tag" data-en="Responsive Web Development" data-ar="تطوير المواقع المتجاوبة">Responsive Web Development</span><span class="tag" data-en="Innovative Ideas in Tech Startups" data-ar="توليد الأفكار الابتكارية في المشاريع التقنية">Innovative Ideas in Tech Startups</span></div>
+  </section>
+  <div class="divider"></div>
+
+  <section class="sect">
+    <div class="rv"><div class="sect-label" data-en="Languages" data-ar="اللغات">Languages</div><div class="sect-title" data-en="I Communicate In" data-ar="اللغات التي أتحدثها">I Communicate In</div></div>
+    <div class="lang-row rv"><div class="lang-pill"><div class="ln">العربية</div><div class="ll" data-en="Native" data-ar="اللغة الأم">Native</div></div><div class="lang-pill"><div class="ln">English</div><div class="ll" data-en="Full Professional Proficiency" data-ar="إجادة مهنية كاملة">Full Professional Proficiency</div></div><div class="lang-pill"><div class="ln">日本語</div><div class="ll" data-en="Basic" data-ar="مبتدئ">Basic</div></div></div>
+  </section>
+  <div class="divider"></div>
+
+  <section class="sect" id="contact">
+    <div class="rv"><div class="sect-label" data-en="Contact" data-ar="التواصل">Contact</div><div class="sect-title" data-en="Let's Connect" data-ar="تواصل معي">Let's Connect</div></div>
+    <div class="contact-row rv">
+      <a href="mailto:nawaf@nawafalharbi.com" class="c-card"><div class="c-icon em">✉</div><div><div class="c-label" data-en="Email" data-ar="البريد">Email</div><div class="c-val">nawaf@nawafalharbi.com</div></div></a>
+      <a href="tel:+966556396968" class="c-card"><div class="c-icon ph">☎</div><div><div class="c-label" data-en="Phone" data-ar="الجوال">Phone</div><div class="c-val" dir="ltr">+966 55 639 6968</div></div></a>
+      <a href="https://www.linkedin.com/in/nawaf-alharbi-086699403" target="_blank" class="c-card"><div class="c-icon li">in</div><div><div class="c-label">LinkedIn</div><div class="c-val">Nawaf AlHarbi</div></div></a>
+    </div>
+  </section>
+  <footer><p>&copy; 2026 Nawaf AlHarbi</p></footer>
+</div></div>
 
 <script>
 // Scroll reveal
-const observer=new IntersectionObserver(e=>{e.forEach(e=>{e.isIntersecting&&e.target.classList.add('visible')})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.reveal').forEach(e=>observer.observe(e));
+const obs=new IntersectionObserver(e=>{e.forEach(e=>{e.isIntersecting&&e.target.classList.add('vis')})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rv').forEach(e=>obs.observe(e));
 
 // Smooth scroll
-document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));t&&t.scrollIntoView({behavior:'smooth',block:'start'})})});
-
-// Parallax glow
-document.addEventListener('mousemove',e=>{const x=e.clientX/window.innerWidth,y=e.clientY/window.innerHeight;document.querySelector('.glow-1').style.transform=`translate(${x*-30}px,${y*-30}px)`;document.querySelector('.glow-2').style.transform=`translate(${x*20}px,${y*20}px)`});
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();closeMenu();const t=document.querySelector(a.getAttribute('href'));t&&t.scrollIntoView({behavior:'smooth',block:'start'})})});
 
 // Mobile menu
-function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open')}
-function closeMenu(){document.getElementById('mobileMenu').classList.remove('open')}
+function toggleMenu(){document.getElementById('mob').classList.toggle('open')}
+function closeMenu(){document.getElementById('mob').classList.remove('open')}
 
-// Language toggle
-let currentLang='en';
-function toggleLang(){
-  currentLang=currentLang==='en'?'ar':'en';
-  const html=document.documentElement;
-  html.dir=currentLang==='ar'?'rtl':'ltr';
-  html.lang=currentLang;
-  document.querySelector('.lang-toggle').textContent=currentLang==='ar'?'English':'عربي';
-  document.querySelectorAll('[data-en][data-ar]').forEach(el=>{
-    const text=el.getAttribute('data-'+currentLang);
-    if(text) el.innerHTML=text;
-  });
+// Dark mode
+function toggleDark(){
+  document.documentElement.classList.toggle('dark');
+  const isDark=document.documentElement.classList.contains('dark');
+  document.getElementById('darkBtn').textContent=isDark?'☀️':'🌙';
+  localStorage.setItem('dark',isDark?'1':'0');
 }
+if(localStorage.getItem('dark')==='1'){document.documentElement.classList.add('dark');document.getElementById('darkBtn').textContent='☀️'}
+
+// Language
+let lang='en';
+function toggleLang(){
+  lang=lang==='en'?'ar':'en';
+  const h=document.documentElement;h.dir=lang==='ar'?'rtl':'ltr';h.lang=lang;
+  document.querySelector('.lang-btn').textContent=lang==='ar'?'English':'عربي';
+  document.querySelectorAll('[data-en][data-ar]').forEach(el=>{const t=el.getAttribute('data-'+lang);if(t)el.innerHTML=t});
+}
+
+// CV Modal
+function openCV(){document.getElementById('cvModal').classList.add('open');document.body.style.overflow='hidden'}
+function closeCV(){document.getElementById('cvModal').classList.remove('open');document.body.style.overflow=''}
+document.getElementById('cvModal').addEventListener('click',e=>{if(e.target===document.getElementById('cvModal'))closeCV()});
 </script>
 </body>
 </html>
